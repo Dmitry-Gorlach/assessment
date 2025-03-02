@@ -8,6 +8,6 @@ import org.mapstruct.Mapper;
 public interface OrderMapper {
     OrderDto toDto(Order order);
     Order toEntity(OrderDto dto);
-    OrderStatusDto toOrderStatusDto(OrderStatus orderStatus);
-    OrderStatus toOrderStatus(OrderStatusDto orderStatus);
+//    OrderStatusDto toOrderStatusDto(OrderStatus orderStatus);
+//    OrderStatus toOrderStatus(OrderStatusDto orderStatus);
 }

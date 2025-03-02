@@ -21,7 +21,7 @@ spec:
             - name: POSTGRES_USER
               value: "MrDzmitry"
             - name: POSTGRES_PASSWORD
-              value: "g42"
+              value:
 #              valueFrom:
 #                secretKeyRef:
 #                  name: backend

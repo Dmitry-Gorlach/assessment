@@ -1,15 +1,6 @@
 spring:
   application:
     name: order-service
-  cloud:
-    vault:
-      uri: http://127.0.0.1:8200
-      token: myroot
-      authentication: TOKEN
-      kv:
-        enabled: true
-        backend: secret
-        default-context: backend
   datasource:
     url: jdbc:postgresql://localhost:5432/orderdb
     username: ${ORDER_DB_USERNAME}
@@ -23,13 +14,23 @@ spring:
         dialect: 'org.hibernate.dialect.PostgreSQLDialect'
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
+    user: ${ORDER_DB_USERNAME}
+    password: ${ORDER_DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/orderdb
 
 server:
   port: 8081
 
-# Swagger configuration via springdoc-openapi is auto-configured in Spring Boot 3.
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics,swagger
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventoryService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
