@@ -33,4 +33,8 @@ public class InventoryService {
             productRepository.save(product);
         }
     }
+
+    public boolean isInStock(String productCode) {
+        return false;
+    }
 }

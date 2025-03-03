@@ -1,5 +1,6 @@
 package com.g42.orderservice.controller;
 
+import com.g42.orderservice.client.InventoryClient;
 import com.g42.orderservice.dto.OrderDto;
 import com.g42.orderservice.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,11 +18,16 @@ import java.util.List;
 @Tag(name = "Order Service", description = "Operations pertaining to orders")
 public class OrderController {
     private final OrderService orderService;
+    private final InventoryClient inventoryClient;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new order")
     public OrderDto createOrder(@RequestBody OrderDto orderDTO) {
+        boolean inStock = inventoryClient.checkInventory(orderDTO.getProductCode());
+        if (!inStock) {
+            throw new RuntimeException("Product " + orderDTO.getProductCode() + " not in stock");
+        }
         return orderService.createOrder(orderDTO);
     }
 

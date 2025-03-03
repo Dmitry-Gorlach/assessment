@@ -46,6 +46,7 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <postgres.version>42.7.5</postgres.version>
         <h2.version>2.3.232</h2.version>
+        <spring-cloud.version>4.2.0</spring-cloud.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -67,6 +68,12 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- Spring Cloud OpenFeign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring-cloud.version}</version> <!-- Check latest version -->
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>

@@ -29,6 +29,10 @@ management:
       exposure:
         include: health,info,metrics,swagger
 
+inventory:
+  service:
+    url: http://inventory-service:8082
+
 resilience4j:
   circuitbreaker:
     instances:

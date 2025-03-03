@@ -34,4 +34,10 @@ public class InventoryController {
     public void updateInventory(@PathVariable String productCode, @RequestParam Integer delta) {
         inventoryService.updateInventory(productCode, delta);
     }
+
+
+    @GetMapping("/api/inventory/check")
+    public boolean checkInventory(@RequestParam String productCode) {
+        return inventoryService.isInStock(productCode);
+    }
 }
