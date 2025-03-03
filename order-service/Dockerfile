@@ -9,14 +9,14 @@ COPY . .
 RUN mvn -f /app/pom.xml clean install -N
 
 # Build the specific service
-RUN mvn -f /app/order-service/pom.xml clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Run stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the correct path
-COPY --from=builder /app/order-service/target/order-service.jar app.jar
+COPY --from=builder /app/order-service/target/order-service-*.jar app.jar
 
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "app.jar"]

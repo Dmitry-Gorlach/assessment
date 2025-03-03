@@ -9,14 +9,14 @@ COPY . .
 RUN mvn -f /app/pom.xml clean install -N
 
 # Build the specific service
-RUN mvn -f /app/api-gateway/pom.xml clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Run stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the correct path
-COPY --from=builder /app/api-gateway/target/api-gateway.jar app.jar
+COPY --from=builder /app/api-gateway/target/api-gateway-*.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

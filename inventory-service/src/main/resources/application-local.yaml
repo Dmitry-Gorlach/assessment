@@ -2,7 +2,9 @@ spring:
   application:
     name: inventory-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/inventorydb
+#    url: jdbc:postgresql://localhost:5432/inventorydb  --- I can use this if connect to postgres running on k8s,
+# like this kubectl port-forward service/postgres 5432:5432 -> postgres.yaml should be applied to k8s in this case
+    url: jdbc:postgresql://postgres:5432/inventorydb
     username: ${INVENTORY_DB_USERNAME}
     password: ${INVENTORY_DB_PASSWORD}
     driver-class-name: 'org.postgresql.Driver'
@@ -17,7 +19,8 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     user: ${INVENTORY_DB_USERNAME}
     password: ${INVENTORY_DB_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/inventorydb
+#    url: jdbc:postgresql://localhost:5432/inventorydb
+    url: jdbc:postgresql://postgres:5432/inventorydb
 
 server:
   port: 8082

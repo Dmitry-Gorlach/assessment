@@ -2,7 +2,8 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/orderdb
+#    url: jdbc:postgresql://localhost:5432/orderdb
+    url: jdbc:postgres://localhost:5432/orderdb
     username: ${ORDER_DB_USERNAME}
     password: ${ORDER_DB_PASSWORD}
     driver-class-name: 'org.postgresql.Driver'
@@ -16,7 +17,8 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     user: ${ORDER_DB_USERNAME}
     password: ${ORDER_DB_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/orderdb
+#    url: jdbc:postgresql://localhost:5432/orderdb
+    url: jdbc:postgresql://postgres:5432/orderdb
 
 server:
   port: 8081
